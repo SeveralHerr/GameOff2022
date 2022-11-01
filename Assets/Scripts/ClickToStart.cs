@@ -13,6 +13,6 @@ public class ClickToStart : MonoBehaviour
 
     private void OnClick()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
     }
 }
