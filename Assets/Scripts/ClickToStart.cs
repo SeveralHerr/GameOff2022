@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Test : MonoBehaviour
+public class ClickToStart : MonoBehaviour
 {
     private Button Button;
 
     private void Start()
     {
-        Button = GetComponent<Button>();
+        Button = GetComponentInChildren<Button>();
         Button.onClick.AddListener(OnClick);
     }
 
