@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\AppleShooterFactory.cs" />
     <Compile Include="Assets\Scripts\Apple.cs" />
     <Compile Include="Assets\Scripts\SingletonMonobehavior.cs" />
+    <Compile Include="Assets\Scripts\AppleCannonUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

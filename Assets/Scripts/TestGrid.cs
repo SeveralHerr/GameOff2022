@@ -24,17 +24,17 @@ public class TestGrid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            {
-                var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                 //grid.SetValue(mousePosition, 56);
-                var shooter = _factory.Create();
-                shooter.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    {
+        //        var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //         //grid.SetValue(mousePosition, 56);
+        //        var shooter = _factory.Create();
+        //        shooter.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
                 
 
-            }
-        }
+        //    }
+        //}
 
         if (Input.GetMouseButtonDown(1))
         {

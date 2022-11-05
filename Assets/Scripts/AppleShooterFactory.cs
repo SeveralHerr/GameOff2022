@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class AppleShooterFactory : MonoBehaviour
+public interface itest{
+}
+public interface ifactory<T>
+{
+    public T Create();
+}
+
+
+public class AppleShooterFactory : MonoBehaviour, itest
 {
     public Vector3 _targetPosition;
     private Vector3 _spawnPosition;
     
-    public class Factory : PlaceholderFactory<string, AppleShooterFactory>
+    public class Factory : PlaceholderFactory<string, AppleShooterFactory>, ifactory<AppleShooterFactory>
     {
         public AppleShooterFactory Create()
         {
