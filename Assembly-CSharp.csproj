@@ -57,9 +57,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Test.cs" />
-    <Compile Include="Assets\Scripts\ClickToStart.cs" />
-    <Compile Include="Assets\Scripts\DoctorMovement.cs" />
+    <Compile Include="Assets\Scripts\Turret.cs" />
+    <Compile Include="Assets\Scripts\TestGrid.cs" />
+    <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\TurretSpinner.cs" />
+    <Compile Include="Assets\Scripts\AppleShooter.cs" />
+    <Compile Include="Assets\Scripts\GameInstaller.cs" />
+    <Compile Include="Assets\Scripts\Grid.cs" />
+    <Compile Include="Assets\Scripts\DoctorMovement.cs" />
+    <Compile Include="Assets\Scripts\ClickToStart.cs" />
+    <Compile Include="Assets\Scripts\AppleShooterFactory.cs" />
     <Compile Include="Assets\Scripts\Apple.cs" />
   </ItemGroup>
   <ItemGroup>

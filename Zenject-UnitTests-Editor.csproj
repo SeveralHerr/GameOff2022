@@ -94,8 +94,8 @@
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\BindFeatures\TestMoveIntoDirectSubContainers.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Bindings\TestFrom.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Other\TestResolve.cs" />
-    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Conventions\TestConvention.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Other\TestTaskUpdater.cs" />
+    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Conventions\TestConvention.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Other\TestValidationSettings.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Factories\Bindings\TestFactoryFromInstance0.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Injection\TestPostInjectParameters.cs" />
