@@ -33,7 +33,6 @@ public class EnemySpawner : MonoBehaviour
     {
         _timer.RunTimer(3f, () => {
             var enemy = _factory.Create();
-            enemy.Setup(transform.position);
             Enemies.Add(enemy);
             }
         );

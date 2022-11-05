@@ -12,7 +12,7 @@ public class Grid : SingletonMonobehavior<Grid>
     private float _cellSize;
     private TextMesh[,] _debugTextArray;
     private Vector3 _originPosition;
-    public  (int x, int y)[] EnemyPath = new (int x, int y)[10];
+    public  (int x, int y)[] EnemyPath = new (int x, int y)[11];
 
     public void Create(int width, int height, float cellSize, Vector3 originPosition)
     {
@@ -45,11 +45,12 @@ public class Grid : SingletonMonobehavior<Grid>
         EnemyPath[2]=(7, 4);
         EnemyPath[3]=(6, 4);
         EnemyPath[4]=(5, 4);
-        EnemyPath[5]=(4, 4);
-        EnemyPath[6]=(3, 4);
-        EnemyPath[7]=(2, 4);
-        EnemyPath[8]=(1, 4);
-        EnemyPath[9]=(0, 4);
+        EnemyPath[5] =(4, 4);
+        EnemyPath[6]=(4, 5);
+        EnemyPath[7]=(3, 5);
+        EnemyPath[8]=(2, 5);
+        EnemyPath[9]=(1, 5);
+        EnemyPath[10]=(0, 5);
     }
 
     public static TextMesh CreateWorldText(string text, Transform parent = null, Vector3 localPosition = default(Vector3), int fontSize = 40, TextAlignment textAlignment = TextAlignment.Center, TextAnchor textAnchor = TextAnchor.MiddleCenter, Color? color = null, int sortingOrder = 0)
@@ -133,5 +134,16 @@ public class Grid : SingletonMonobehavior<Grid>
     {
         var pos = GetXY(worldPosition);
         return GetWorldPosition(pos.x, pos.y) + new Vector3(_cellSize / 2, _cellSize / 2);
+    }
+
+    public Vector3 GetEnemyPathWorldPosition(int path, Vector3 offset)
+    {
+        var worldPos = GetWorldPosition(EnemyPath[path].x, EnemyPath[path].y);
+        return worldPos + offset;
+    }
+
+    public Vector3 GetEnemyPathWorldPosition(int path)
+    {
+        return GetEnemyPathWorldPosition(path, Vector3.zero);
     }
 }
