@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3797831811126893800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.22, y: 0.2297, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 103821891559351629}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 625ae8572b0c95e42a79abd703d18c60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -131,6 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bbd98f4cb7ce54c93aaf57c62f8776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectileSpawnPosition: {fileID: 0}
+  doctor: {fileID: 0}
+  Barrel: {fileID: 0}
 --- !u!114 &-3374496729126476785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,11 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121d7818de8a0174c8ac420e83c467f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doctor: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  rb: {fileID: 611127594024021306}
-  aimDirection: {x: 0, y: 0}
-  initialRotation: {x: 0, y: 0, z: 0}
+  _targetPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &611127594024021306
 Rigidbody2D:
   serializedVersion: 4

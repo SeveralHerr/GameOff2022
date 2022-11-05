@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Grid
+public class Grid : SingletonMonobehavior<Grid>
 {
-    private readonly int _width;
-    private readonly int _height;
-    private readonly int[,] _gridArray;
+    private  int _width;
+    private  int _height;
+    private  int[,] _gridArray;
     private float _cellSize;
     private TextMesh[,] _debugTextArray;
     private Vector3 _originPosition;
-    
+    public  (int x, int y)[] EnemyPath = new (int x, int y)[10];
 
-    public Grid(int width, int height, float cellSize, Vector3 originPosition)
+    public void Create(int width, int height, float cellSize, Vector3 originPosition)
     {
         _width = width;
         _height = height;
@@ -38,6 +39,17 @@ public class Grid
         Debug.DrawLine(GetWorldPosition(_width, 0), GetWorldPosition(_width, _height), Color.white, 100f);
 
         SetValue(2, 1, 56);
+
+        EnemyPath[0]=(9, 4);
+        EnemyPath[1]=(8, 4);
+        EnemyPath[2]=(7, 4);
+        EnemyPath[3]=(6, 4);
+        EnemyPath[4]=(5, 4);
+        EnemyPath[5]=(4, 4);
+        EnemyPath[6]=(3, 4);
+        EnemyPath[7]=(2, 4);
+        EnemyPath[8]=(1, 4);
+        EnemyPath[9]=(0, 4);
     }
 
     public static TextMesh CreateWorldText(string text, Transform parent = null, Vector3 localPosition = default(Vector3), int fontSize = 40, TextAlignment textAlignment = TextAlignment.Center, TextAnchor textAnchor = TextAnchor.MiddleCenter, Color? color = null, int sortingOrder = 0)
@@ -120,6 +132,6 @@ public class Grid
     public Vector3 ValidateWorldGridPosition(Vector3 worldPosition)
     {
         var pos = GetXY(worldPosition);
-        return GetWorldPosition(pos.x, pos.y);
+        return GetWorldPosition(pos.x, pos.y) + new Vector3(_cellSize / 2, _cellSize / 2);
     }
 }

@@ -11,6 +11,9 @@ public class EnemySpawner : MonoBehaviour
 
     public static List<TestDoctor> Enemies = new List<TestDoctor>();
 
+    
+
+
 
     [Inject]
     private void Construct(TestDoctor.Factory factory, ITimer timer)
@@ -22,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -46,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
         TestDoctor closest = null;
         foreach(var enemy in Enemies)
         {
-            Debug.Log(Vector3.Distance(position, enemy.transform.position));
+            //Debug.Log(Vector3.Distance(position, enemy.transform.position));
             if (Vector3.Distance(position, enemy.transform.position) < maxRange)
             {
                 if(closest == null)
