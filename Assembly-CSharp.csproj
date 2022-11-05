@@ -68,6 +68,8 @@
     <Compile Include="Assets\Scripts\ClickToStart.cs" />
     <Compile Include="Assets\Scripts\AppleShooterFactory.cs" />
     <Compile Include="Assets\Scripts\Apple.cs" />
+    <Compile Include="Assets\Scripts\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\TestDoctor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

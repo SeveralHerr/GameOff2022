@@ -21,8 +21,6 @@ public class TurretSpinner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var aimDirection = (doctor.transform.position - transform.position).normalized;
-        var angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-        transform.eulerAngles = new Vector3(0, 0, angle);
+
     }
 }

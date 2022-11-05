@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class TestGrid : MonoBehaviour
 {
     private Grid grid;
+    private AppleShooter.Factory _factory;
+
+
+    [Inject]
+    private void Construct(AppleShooter.Factory factory)
+    {
+        _factory = factory;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        grid = new Grid(4, 2, 60f, new Vector3(200, 0, 0));
+        grid = new Grid(10, 10, 32f, new Vector3(-155, -155, 0));
     }
 
     // Update is called once per frame
@@ -18,7 +27,10 @@ public class TestGrid : MonoBehaviour
         {
             {
                 var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                 grid.SetValue(mousePosition, 56);
+                 //grid.SetValue(mousePosition, 56);
+                var shooter = _factory.Create();
+                shooter.transform.position = grid.ValidateWorldGridPosition(mousePosition);
+                
 
             }
         }
@@ -26,7 +38,7 @@ public class TestGrid : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            grid.SetValue(mousePosition, 0);
+            //grid.SetValue(mousePosition, 0);
         }
     }
 }

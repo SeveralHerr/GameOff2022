@@ -5,6 +5,9 @@ using Zenject;
 
 public class AppleShooterFactory : MonoBehaviour
 {
+    public Vector3 _targetPosition;
+    private Vector3 _spawnPosition;
+    
     public class Factory : PlaceholderFactory<string, AppleShooterFactory>
     {
         public AppleShooterFactory Create()
@@ -13,34 +16,31 @@ public class AppleShooterFactory : MonoBehaviour
         }
     }
 
-    public GameObject doctor;
-    public SpriteRenderer spriteRenderer;
-    public Rigidbody2D rb;
-
-    public Vector2 aimDirection;
-    public Vector3 initialRotation;
-
-    // Start is called before the first frame update
     void Start()
     {
-        // initialPosition = transform.position;
-        aimDirection = new Vector3(1, 1,0);//(Vector2)(doctor.transform.position - transform.position).normalized;
         
+    }
+    
+    public void Setup(Vector3 spawnPosition, Vector3 targetPosition)
+    {
+        _targetPosition = targetPosition;
+        _spawnPosition = spawnPosition;
 
-        //var parentPos = transform.parent.position;
-        //transform.SetParent(null);
-        //transform.position = parentPos;
+        transform.position = _spawnPosition;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //
-        rb.MovePosition(rb.position + aimDirection * 3);
-    }
+        var moveDirection = (_targetPosition - _spawnPosition).normalized;
 
-    private void LateUpdate()
-    {
-        //this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, this.transform.parent.rotation.z * -1.0f);
+        var movespeed = 500f;
+
+        transform.position += moveDirection * movespeed * Time.deltaTime;
+
+        //var destroySelfDistance = 1f;
+        //if (Vector3.Distance(transform.position, _targetPosition) < destroySelfDistance)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 }

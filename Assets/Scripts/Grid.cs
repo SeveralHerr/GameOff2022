@@ -72,6 +72,11 @@ public class Grid
         return new Vector3(x, y) * _cellSize + _originPosition;
     }
 
+    public Vector3 GetWorldPosition2(int x, int y)
+    {
+        return new Vector3(x, y) * _cellSize + _originPosition;
+    }
+
     public (int x, int y) GetXY(Vector3 worldPosition)
     {
         int x = Mathf.FloorToInt((worldPosition - _originPosition ).x/ _cellSize);
@@ -110,5 +115,11 @@ public class Grid
     {
         var pos = GetXY(worldPosition);
         return GetValue(pos.x, pos.y);
+    }
+
+    public Vector3 ValidateWorldGridPosition(Vector3 worldPosition)
+    {
+        var pos = GetXY(worldPosition);
+        return GetWorldPosition(pos.x, pos.y);
     }
 }
