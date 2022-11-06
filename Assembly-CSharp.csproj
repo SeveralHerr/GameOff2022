@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\Test.cs" />
     <Compile Include="Assets\Scripts\IFactory.cs" />
     <Compile Include="Assets\Scripts\Turret.cs" />
+    <Compile Include="Assets\Scripts\HealthBehavior.cs" />
     <Compile Include="Assets\Scripts\TestGrid.cs" />
     <Compile Include="Assets\Scripts\GreenAppleShooter.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Assets\Scripts\GameInstaller.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
+    <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\DoctorMovement.cs" />
     <Compile Include="Assets\Scripts\ClickToStart.cs" />
     <Compile Include="Assets\Scripts\AppleProjectile.cs" />
@@ -76,8 +78,6 @@
     <Compile Include="Assets\Scripts\SingletonMonobehavior.cs" />
     <Compile Include="Assets\Scripts\Apple.cs" />
     <Compile Include="Assets\Scripts\GreenAppleProjectile.cs" />
-    <Compile Include="Assets\Scripts\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\HealthBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

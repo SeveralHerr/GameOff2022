@@ -9,7 +9,7 @@ public class Projectile<T> : MonoBehaviour
 
     private BoxCollider2D boxCollider2D;
 
-    public float MoveSpeed = 350f;
+    public float MoveSpeed = 75f;
 
     private void Start()
     {
@@ -36,9 +36,8 @@ public class Projectile<T> : MonoBehaviour
     {
         var moveDirection = (_targetPosition - _spawnPosition).normalized;
 
-        var movespeed = 500f;
 
-        transform.position += moveDirection * movespeed * Time.deltaTime;
+        transform.position += moveDirection * MoveSpeed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
