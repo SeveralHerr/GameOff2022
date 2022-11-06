@@ -18,6 +18,7 @@ public class HealthBehavior : MonoBehaviour
     {
         Health -= damage;
         HealthBar.SetHealth(Health);
+
         if (Health <= 0)
         {
             EnemySpawner.Enemies.Remove(gameObject.GetComponent<TestDoctor>());
