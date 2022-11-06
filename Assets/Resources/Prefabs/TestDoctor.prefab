@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2742480451708955872}
   - component: {fileID: 272670906817103370}
   - component: {fileID: 7080109861223320940}
+  - component: {fileID: 8335025806876266355}
   m_Layer: 0
   m_Name: TestDoctor
   m_TagString: Untagged
@@ -68,6 +69,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3341e24cf50a0c40982c900352ad0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBehavior: {fileID: 8335025806876266355}
+--- !u!114 &8335025806876266355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835963897554733631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9400e0a210c81e242862dd83bd47f609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 3
+  MaxHealth: 3
+  HealthBar:
+    slider: {fileID: 4199924389287252890}
 --- !u!1 &2631588584370133840
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,3 +397,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4868406801454734306, guid: 905f1deec6a89ce469eb92d012e942b7, type: 3}
   m_PrefabInstance: {fileID: 8829798194232811801}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4199924389287252890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4665903307222856323, guid: 905f1deec6a89ce469eb92d012e942b7, type: 3}
+  m_PrefabInstance: {fileID: 8829798194232811801}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

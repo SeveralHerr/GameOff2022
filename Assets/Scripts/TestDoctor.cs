@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class TestDoctor : MonoBehaviour
@@ -11,6 +12,8 @@ public class TestDoctor : MonoBehaviour
 
     private int path = 0;
     private Vector3 offset = new Vector3(0, 15, 0);
+
+    public HealthBehavior healthBehavior;
     
     public class Factory : PlaceholderFactory<string, TestDoctor>
     {
@@ -24,6 +27,7 @@ public class TestDoctor : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        
 
         transform.position = Grid.Instance.GetEnemyPathWorldPosition(0, new Vector3(100, 0, 0) + offset);
         _targetPosition = Grid.Instance.GetEnemyPathWorldPosition(0, offset);
@@ -51,4 +55,6 @@ public class TestDoctor : MonoBehaviour
 
         transform.position += (Vector3) moveDirection * movespeed * Time.deltaTime;
     }
+
+
 }

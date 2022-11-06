@@ -42,6 +42,9 @@ public class TestGrid : MonoBehaviour
             var gridPos = Grid.Instance.GetXY(mousePosition);
             //Debug.Log($"{gridPos.x},{gridPos.y}");
             //grid.SetValue(mousePosition, 0);
+
+            var enemy = EnemySpawner.GetClosestEnemy(mousePosition, 444f);
+            enemy.GetComponent<TestDoctor>().healthBehavior.TakeDamage(1);
         }
     }
 }
