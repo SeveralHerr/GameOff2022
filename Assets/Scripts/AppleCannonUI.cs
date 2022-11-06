@@ -30,7 +30,22 @@ public class AppleCannonUI : MonoBehaviour
         if (isAppleShooterActive)
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseOverPrefab.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
+            mouseOverPrefab.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
+            //new Vector3(mousePosition.x, mousePosition.y, 0);
+
+            var sprites = mouseOverPrefab.GetComponentsInChildren<SpriteRenderer>();
+
+            foreach (var sprite in sprites)
+            {
+                if(Grid.Instance.GetValue(mousePosition) == null)
+                {
+                    sprite.color = Color.green;
+                }
+                else
+                {
+                    sprite.color = Color.red;
+                }
+            }
         }
         if (Input.GetMouseButtonDown(0))
         {
@@ -39,9 +54,15 @@ public class AppleCannonUI : MonoBehaviour
                 return; 
             }
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //grid.SetValue(mousePosition, 56);
-            var shooter = _factory.Create();
-            shooter.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
+            if (Grid.Instance.GetValue(mousePosition) == null)
+            {
+
+                //grid.SetValue(mousePosition, 56);
+                var shooter = _factory.Create();
+                shooter.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
+
+                Grid.Instance.SetValue(mousePosition, shooter);
+            }
 
         }
     }

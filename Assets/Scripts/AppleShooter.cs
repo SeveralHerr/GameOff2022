@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class AppleShooter : MonoBehaviour
+public class AppleShooter : MonoBehaviour, IPlaceable
 {
     private AppleShooterFactory.Factory _factory;
     private ITimer _timer;

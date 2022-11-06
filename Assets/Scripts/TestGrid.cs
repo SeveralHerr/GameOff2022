@@ -18,7 +18,7 @@ public class TestGrid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Grid.Instance.Create(10, 10, 32f, new Vector3(-155, -155, 0));
+       // Grid.Instance.Create(10, 10, 32f, new Vector3(-155, -155, 0));
     }
 
     // Update is called once per frame
