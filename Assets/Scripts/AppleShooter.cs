@@ -5,15 +5,14 @@ using Zenject;
 
 public class AppleShooter : MonoBehaviour, IPlaceable
 {
-    private AppleShooterFactory.Factory _factory;
+    private AppleProjectile.Factory _factory;
     private ITimer _timer;
 
     public GameObject _projectileSpawnPosition;
-    public GameObject doctor;
     public GameObject Barrel;
 
     [Inject]
-    public void Construct(ITimer timer, AppleShooterFactory.Factory factory)
+    public void Construct(ITimer timer, AppleProjectile.Factory factory)
     {
         _timer = timer;
         _factory = factory;
@@ -51,8 +50,6 @@ public class AppleShooter : MonoBehaviour, IPlaceable
         
         _timer.RunTimer(3.1f, () =>
        {
-
-
            var projectile = _factory.Create();
            projectile.Setup(_projectileSpawnPosition.transform.position, enemy.transform.position);
 

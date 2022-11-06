@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -3374496729126476785}
   - component: {fileID: 611127594024021306}
   m_Layer: 0
-  m_Name: Apple
+  m_Name: AppleProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSpawnPosition: {fileID: 0}
-  doctor: {fileID: 0}
   Barrel: {fileID: 0}
 --- !u!114 &-3374496729126476785
 MonoBehaviour:
@@ -146,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121d7818de8a0174c8ac420e83c467f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetPosition: {x: 0, y: 0, z: 0}
+  MoveSpeed: 350
 --- !u!50 &611127594024021306
 Rigidbody2D:
   serializedVersion: 4
