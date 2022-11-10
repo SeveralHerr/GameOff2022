@@ -9,18 +9,20 @@ public class AppleCannonUI : MonoBehaviour
 {
     public Button button;
     public GameObject prefab;
-    public GameObject mouseOverPrefab;
+    public GameObject appleMouseoverPrefab;
+    public GameObject greenAppleMouseoverPrefab;
     private AppleShooter.Factory _factory;
+    private GreenAppleShooter.Factory _greenAppleFactory;
     private bool isAppleShooterActive = false;
 
 
-
+    private IPlaceable SelectedObject;
 
     [Inject]
-    private void Construct(AppleShooter.Factory factory)
+    private void Construct(AppleShooter.Factory factory, GreenAppleShooter.Factory greenAppleFactory)
     {
         _factory = factory;
-
+        _greenAppleFactory = greenAppleFactory;
     }
 
 
@@ -30,10 +32,10 @@ public class AppleCannonUI : MonoBehaviour
         if (isAppleShooterActive)
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseOverPrefab.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
+            appleMouseoverPrefab.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
             //new Vector3(mousePosition.x, mousePosition.y, 0);
 
-            var sprites = mouseOverPrefab.GetComponentsInChildren<SpriteRenderer>();
+            var sprites = appleMouseoverPrefab.GetComponentsInChildren<SpriteRenderer>();
 
             foreach (var sprite in sprites)
             {
@@ -49,34 +51,39 @@ public class AppleCannonUI : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            if(!isAppleShooterActive)
+            if(SelectedObject == null)
             {
-                return; 
+                return;
             }
+
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (Grid.Instance.GetValue(mousePosition) == null)
             {
-
+                SelectedObject.
                 //grid.SetValue(mousePosition, 56);
                 var shooter = _factory.Create();
                 shooter.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
 
                 Grid.Instance.SetValue(mousePosition, shooter);
             }
-
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        button.onClick.AddListener(() => OnClick());
+        //button.onClick.AddListener(() => OnClick());
+        var buttons = gameObject.GetComponentsInChildren<Button>();
+        
+        foreach(var button in buttons)
+        {
+            button.onClick.AddListener(() => OnClick(button.gameObject));
+        }
     }
 
 
-    private void OnClick()
+    private void OnClick(GameObject obj)
     {
-        Debug.Log("click");
-        isAppleShooterActive = true;
+        SelectedObject = obj.GetComponentInChildren<IPlaceable>();
     }
 }
