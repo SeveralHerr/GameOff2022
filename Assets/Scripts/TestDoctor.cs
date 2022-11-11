@@ -15,6 +15,7 @@ public class TestDoctor : MonoBehaviour
     private Vector3 offset = new Vector3(0, 15, 0);
 
     public HealthBehavior healthBehavior;
+    public float MoveSpeed = 25f;
     
     public class Factory : PlaceholderFactory<string, TestDoctor>
     {
@@ -53,9 +54,8 @@ public class TestDoctor : MonoBehaviour
 
         var moveDirection = (_targetPosition - (Vector2)transform.position).normalized;
 
-        var movespeed = 25f;
 
-        transform.position += (Vector3) moveDirection * movespeed * Time.deltaTime;
+        transform.position += (Vector3) moveDirection * MoveSpeed * Time.deltaTime;
     }
 
 

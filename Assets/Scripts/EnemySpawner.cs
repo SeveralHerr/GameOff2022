@@ -33,9 +33,16 @@ public class EnemySpawner : MonoBehaviour
     {
         _timer.RunTimer(3f, () => {
             var enemy = _factory.Create();
+            enemy.MoveSpeed = 25f;
             Enemies.Add(enemy);
+
+            var enemy2 = _factory.Create();
+            enemy2.MoveSpeed = 40f;
+            Enemies.Add(enemy2);
             }
         );
+
+
     }
 
     public static GameObject GetClosestEnemy(Vector3 position, float maxRange)
