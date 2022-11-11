@@ -274,6 +274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bbd98f4cb7ce54c93aaf57c62f8776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectileSpawnPosition: {fileID: 3954131690686395463}
-  doctor: {fileID: 0}
+  ProjectileSpawnPosition: {fileID: 3954131690686395463}
   Barrel: {fileID: 3954131690252536398}
+  TargetEnemy: {fileID: 0}

@@ -7,39 +7,74 @@ using Zenject;
 
 public class AppleCannonUI : MonoBehaviour
 {
-    public Button button;
-    public GameObject prefab;
-    public GameObject appleMouseoverPrefab;
-    public GameObject greenAppleMouseoverPrefab;
+    public Button AppleButton;
+    public Button GreenAppleButton;
+
+    public GameObject ApplePrefab;
+    public GameObject MouseOverPrefab;
     private AppleShooter.Factory _factory;
-    private GreenAppleShooter.Factory _greenAppleFactory;
+
+    public GameObject GreenApplePrefab;
+    public GameObject GreenMouseOverPrefab;
+    private GreenAppleShooter.Factory _greenFactory;
+
+
+    public GameObject SelectedPrefab = null;
+    public GameObject SelectedMouseOverPrefab = null;
+
+
+
     private bool isAppleShooterActive = false;
 
 
-    private IPlaceable SelectedObject;
+
 
     [Inject]
     private void Construct(AppleShooter.Factory factory, GreenAppleShooter.Factory greenAppleFactory)
     {
         _factory = factory;
-        _greenAppleFactory = greenAppleFactory;
+        _greenFactory = greenAppleFactory;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (isAppleShooterActive)
+        //if (isAppleShooterActive)
+        //{
+        //    var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        //    MouseOverPrefab.SetActive(true);
+        //    MouseOverPrefab.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
+        //    //new Vector3(mousePosition.x, mousePosition.y, 0);
+
+        //    var sprites = MouseOverPrefab.GetComponentsInChildren<SpriteRenderer>();
+
+        //    foreach (var sprite in sprites)
+        //    {
+        //        if (Grid.Instance.GetValue(mousePosition) == null)
+        //        {
+        //            sprite.color = Color.green;
+        //        }
+        //        else
+        //        {
+        //            sprite.color = Color.red;
+        //        }
+        //    }
+        //}
+
+        if(SelectedPrefab != null)
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            appleMouseoverPrefab.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
-            //new Vector3(mousePosition.x, mousePosition.y, 0);
 
-            var sprites = appleMouseoverPrefab.GetComponentsInChildren<SpriteRenderer>();
+            MouseOverPrefab.SetActive(true);
+            MouseOverPrefab.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
+
+            var sprites = MouseOverPrefab.GetComponentsInChildren<SpriteRenderer>();
 
             foreach (var sprite in sprites)
             {
-                if(Grid.Instance.GetValue(mousePosition) == null)
+                if (Grid.Instance.GetValue(mousePosition) == null)
                 {
                     sprite.color = Color.green;
                 }
@@ -49,41 +84,61 @@ public class AppleCannonUI : MonoBehaviour
                 }
             }
         }
+
+        
         if (Input.GetMouseButtonDown(0))
         {
-            if(SelectedObject == null)
+            if (SelectedPrefab == null)
             {
                 return;
             }
-
+            
+            
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (Grid.Instance.GetValue(mousePosition) == null)
             {
-                SelectedObject.
-                //grid.SetValue(mousePosition, 56);
-                var shooter = _factory.Create();
-                shooter.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
+                if(SelectedPrefab == ApplePrefab)
+                {
+                    var shooter = _factory.Create();
+                    shooter.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
 
-                Grid.Instance.SetValue(mousePosition, shooter);
+                    Grid.Instance.SetValue(mousePosition, shooter);
+                }
+                else if (SelectedPrefab == GreenApplePrefab)
+                {
+                    var shooter = _greenFactory.Create();
+                    shooter.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
+
+                    Grid.Instance.SetValue(mousePosition, shooter);
+                }
             }
+        }
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            MouseOverPrefab.SetActive(false);
+            SelectedPrefab = null;
+            MouseOverPrefab = null;
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //button.onClick.AddListener(() => OnClick());
-        var buttons = gameObject.GetComponentsInChildren<Button>();
-        
-        foreach(var button in buttons)
-        {
-            button.onClick.AddListener(() => OnClick(button.gameObject));
-        }
+        AppleButton.onClick.AddListener(() => OnClick());
+        GreenAppleButton.onClick.AddListener(() => GreenOnClick());
     }
 
 
-    private void OnClick(GameObject obj)
+    private void OnClick()
     {
-        SelectedObject = obj.GetComponentInChildren<IPlaceable>();
+        SelectedPrefab = ApplePrefab;
+        SelectedMouseOverPrefab = MouseOverPrefab;
+    }
+
+    private void GreenOnClick()
+    {
+        SelectedPrefab = GreenApplePrefab;
+        SelectedMouseOverPrefab = GreenMouseOverPrefab;
     }
 }

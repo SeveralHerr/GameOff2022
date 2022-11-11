@@ -9,14 +9,8 @@ public class Shooter<T> : MonoBehaviour, IPlaceable
     public GameObject ProjectileSpawnPosition;
     public GameObject Barrel;
     public GameObject TargetEnemy;
-    
-    public class Factory : PlaceholderFactory<string, T>
-    {
-        public T Create()
-        {
-            return base.Create($"Prefabs/{nameof(T)}");
-        }
-    }
+
+
 
     public void PointToEnemy()
     {
@@ -28,9 +22,18 @@ public class Shooter<T> : MonoBehaviour, IPlaceable
 
         var aimDirection = (TargetEnemy.transform.position - Barrel.transform.position).normalized;
         var angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+
         Barrel.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
+
+    public class Factory : PlaceholderFactory<string, T>
+    {
+        public T Create()
+        {
+            return base.Create($"Prefabs/{typeof(T).FullName}");
+        }
+    }
     private GameObject GetClosestEnemy()
     {
         return EnemySpawner.GetClosestEnemy(transform.position, 4000f);
@@ -39,16 +42,19 @@ public class Shooter<T> : MonoBehaviour, IPlaceable
 
 public class GreenAppleShooter : Shooter<GreenAppleShooter>, IPlaceable
 {
-    private AppleProjectile.Factory _factory;
+    private GreenAppleProjectile.Factory _factory;
     private ITimer _timer;
 
     [Inject]
-    public void Construct(ITimer timer, AppleProjectile.Factory factory)
+    public void Construct(ITimer timer, GreenAppleProjectile.Factory factory)
     {
         _timer = timer;
         _factory = factory;
     }
 
+
+
+    
     // Update is called once per frame
     void Update()
     {
