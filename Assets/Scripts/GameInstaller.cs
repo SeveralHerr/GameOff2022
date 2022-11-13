@@ -17,6 +17,7 @@ public class GameInstaller : MonoInstaller
         Container.BindFactory<string, GreenAppleShooter, GreenAppleShooter.Factory>().FromFactory<PrefabResourceFactory<GreenAppleShooter>>();
         Container.BindFactory<string, GreenAppleProjectile, GreenAppleProjectile.Factory>().FromFactory<PrefabResourceFactory<GreenAppleProjectile>>();
         Container.Bind<TestDoctorWave>().ToSelf().AsTransient();
+        Container.Bind<FasterBiggerTestDoctorWave>().ToSelf().AsTransient();
         //Instantiate(Resources.Load("Prefabs/EnemySpawner"), Vector3.zero, Quaternion.identity);
 
         Container.BindInstance<EnemySpawner>(enemySpawner).AsSingle();

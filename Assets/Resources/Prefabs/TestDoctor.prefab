@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7080109861223320940}
   - component: {fileID: 8335025806876266355}
   - component: {fileID: 261173149117561787}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestDoctor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 4846972006236365880}
   - component: {fileID: 3989450732196922993}
   - component: {fileID: 1234084863973811549}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 7165813995585874803}
   - component: {fileID: 9163348556784669544}
   - component: {fileID: 779732667619780689}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,6 +334,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3478424099270206575, guid: 905f1deec6a89ce469eb92d012e942b7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4868406801454734306, guid: 905f1deec6a89ce469eb92d012e942b7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -437,6 +441,14 @@ PrefabInstance:
     - target: {fileID: 4868406801454734307, guid: 905f1deec6a89ce469eb92d012e942b7, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868406801454734307, guid: 905f1deec6a89ce469eb92d012e942b7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868406801532671513, guid: 905f1deec6a89ce469eb92d012e942b7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 905f1deec6a89ce469eb92d012e942b7, type: 3}
