@@ -40,6 +40,7 @@ public class AppleShooter : Shooter<AppleShooter>, IPlaceable
     }
 
 
+
 }
 
 

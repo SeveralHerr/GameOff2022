@@ -6,6 +6,7 @@ using Zenject;
 public class GameInstaller : MonoInstaller
 {
     public EnemySpawner enemySpawner;
+    public ResourceManager resourceManager;
     public override void InstallBindings()
     {
         Container.BindFactory<string, AppleProjectile, AppleProjectile.Factory>().FromFactory<PrefabResourceFactory<AppleProjectile>>();
@@ -21,6 +22,7 @@ public class GameInstaller : MonoInstaller
         //Instantiate(Resources.Load("Prefabs/EnemySpawner"), Vector3.zero, Quaternion.identity);
 
         Container.BindInstance<EnemySpawner>(enemySpawner).AsSingle();
+        Container.BindInstance<ResourceManager>(resourceManager).AsSingle();
 
 
 

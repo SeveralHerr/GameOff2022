@@ -24,7 +24,10 @@ public class Position
 
 public class NotPlaceable : IPlaceable
 {
-    
+    public GameObject GetGameObject()
+    {
+        throw new NotImplementedException();
+    }
 }
 
 
