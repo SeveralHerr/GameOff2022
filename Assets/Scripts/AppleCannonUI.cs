@@ -85,18 +85,19 @@ public class AppleCannonUI : MonoBehaviour
                 return;
             }
             
-            if(SelectedCost > _resourceManager.Apples)
-            {
-                return; 
-            }
-
+            
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (Grid.Instance.GetValue(mousePosition) == null)
             {
                 var shooter = SelectedFactory.Create();
                 shooter.GetGameObject().transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
 
-                _resourceManager.Apples -= SelectedCost;
+                    Grid.Instance.SetValue(mousePosition, shooter);
+                }
+                else if (SelectedPrefab == GreenApplePrefab)
+                {
+                    var shooter = _greenFactory.Create();
+                    shooter.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
 
                 Grid.Instance.SetValue(mousePosition, shooter);
             }
