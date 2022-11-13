@@ -8,6 +8,7 @@ using Zenject;
 public class AppleCannonUI : MonoBehaviour
 {
     public Button AppleButton;
+    public Button TreeButton;
     public Button GreenAppleButton;
 
     public GameObject ApplePrefab;
@@ -17,6 +18,10 @@ public class AppleCannonUI : MonoBehaviour
     public GameObject GreenApplePrefab;
     public GameObject GreenMouseOverPrefab;
     private GreenAppleShooter.Factory _greenFactory;
+
+    public GameObject TreePrefab;
+    public GameObject TreeMouseOverPrefab;
+    private TreeResource.Factory _treeFactory;
 
 
     public GameObject SelectedPrefab = null;
@@ -32,11 +37,12 @@ public class AppleCannonUI : MonoBehaviour
 
 
     [Inject]
-    private void Construct(AppleShooter.Factory factory, GreenAppleShooter.Factory greenAppleFactory, ResourceManager resourceManager)
+    private void Construct(AppleShooter.Factory factory, GreenAppleShooter.Factory greenAppleFactory, ResourceManager resourceManager, TreeResource.Factory treeFactory)
     {
         _factory = factory;
         _greenFactory = greenAppleFactory;
         _resourceManager = resourceManager;
+        _treeFactory = treeFactory;
     }
 
 
@@ -118,6 +124,7 @@ public class AppleCannonUI : MonoBehaviour
     {
         AppleButton.onClick.AddListener(() => OnClick());
         GreenAppleButton.onClick.AddListener(() => GreenOnClick());
+        TreeButton.onClick.AddListener(() => TreeOnClick());
     }
 
 
@@ -134,6 +141,14 @@ public class AppleCannonUI : MonoBehaviour
         SelectedPrefab = GreenApplePrefab;
         SelectedMouseOverPrefab = GreenMouseOverPrefab;
         SelectedFactory = _greenFactory;
+        SelectedCost = 2;
+    }
+
+    private void TreeOnClick()
+    {
+        SelectedPrefab = TreePrefab;
+        SelectedMouseOverPrefab = TreeMouseOverPrefab;
+        SelectedFactory = _treeFactory;
         SelectedCost = 2;
     }
 }

@@ -15,6 +15,8 @@ public class GameInstaller : MonoInstaller
         Container.BindFactory<string, TestDoctor, TestDoctor.Factory>().FromFactory<PrefabResourceFactory<TestDoctor>>();
         Container.BindFactory<string, AppleShooter, AppleShooter.Factory>().FromFactory<PrefabResourceFactory<AppleShooter>>();
 
+        Container.BindFactory<string, TreeResource, TreeResource.Factory>().FromFactory<PrefabResourceFactory<TreeResource>>();
+
         Container.BindFactory<string, GreenAppleShooter, GreenAppleShooter.Factory>().FromFactory<PrefabResourceFactory<GreenAppleShooter>>();
         Container.BindFactory<string, GreenAppleProjectile, GreenAppleProjectile.Factory>().FromFactory<PrefabResourceFactory<GreenAppleProjectile>>();
         Container.Bind<TestDoctorWave>().ToSelf().AsTransient();
@@ -23,6 +25,7 @@ public class GameInstaller : MonoInstaller
 
         Container.BindInstance<EnemySpawner>(enemySpawner).AsSingle();
         Container.BindInstance<ResourceManager>(resourceManager).AsSingle();
+
 
 
 

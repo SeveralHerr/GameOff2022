@@ -61,9 +61,9 @@ public class Grid : SingletonMonobehavior<Grid>
                     _gridArray[x, y].PlaceableObject = new NotPlaceable();
                 }
 
-                _debugTextArray[x, y] = CreateWorldText($"{x},{y}", null, GetWorldPosition(x, y) + new Vector3(_cellSize, _cellSize) * 0.5f, 100, TextAlignment.Center, TextAnchor.MiddleCenter, Color.white, 0);
-                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white, 100f);
-                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.white, 100f);
+                //_debugTextArray[x, y] = CreateWorldText($"{x},{y}", null, GetWorldPosition(x, y) + new Vector3(_cellSize, _cellSize) * 0.5f, 100, TextAlignment.Center, TextAnchor.MiddleCenter, Color.white, 99);
+               // Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white, 100f);
+                //Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.white, 100f);
             }
         }
 
