@@ -42,7 +42,7 @@ public class Shooter<T> : MonoBehaviour, IPlaceable
     }
     private GameObject GetClosestEnemy()
     {
-        return _enemySpawner.GetClosestEnemy(transform.position, 4000f);
+        return _enemySpawner.GetClosestEnemy(transform.position, 50f);
     }
 }
 

@@ -74,6 +74,11 @@ public class AppleCannonUI : MonoBehaviour
 
             foreach (var sprite in sprites)
             {
+                if(sprite.gameObject.name == "Range")
+                {
+                    return;
+                }
+
                 if (Grid.Instance.GetValue(mousePosition) == null)
                 {
                     sprite.color = Color.green;
