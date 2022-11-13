@@ -33,7 +33,7 @@ public class Shooter<T> : MonoBehaviour, IPlaceable
     }
 
 
-    public class Factory : PlaceholderFactory<string, T>
+    public class Factory : PlaceholderFactory<string, T>, IFactory<T>
     {
         public T Create()
         {
@@ -43,6 +43,11 @@ public class Shooter<T> : MonoBehaviour, IPlaceable
     private GameObject GetClosestEnemy()
     {
         return _enemySpawner.GetClosestEnemy(transform.position, 50f);
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }
 

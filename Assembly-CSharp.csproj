@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\IEnemy.cs" />
     <Compile Include="Assets\Scripts\EnemyWaveManager.cs" />
     <Compile Include="Assets\Scripts\IWave.cs" />
+    <Compile Include="Assets\Scripts\ResourceManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
