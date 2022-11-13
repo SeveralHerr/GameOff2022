@@ -7,13 +7,13 @@ public class TestGrid : MonoBehaviour
 {
     //private Grid _grid;
     private AppleShooter.Factory _factory;
-
+    private EnemySpawner _enemySpawner;
 
     [Inject]
-    private void Construct(AppleShooter.Factory factory)
+    private void Construct(AppleShooter.Factory factory, EnemySpawner enemySpawner)
     {
         _factory = factory;
-
+        _enemySpawner = enemySpawner;
     }
     // Start is called before the first frame update
     void Start()
@@ -43,7 +43,7 @@ public class TestGrid : MonoBehaviour
             //Debug.Log($"{gridPos.x},{gridPos.y}");
             //grid.SetValue(mousePosition, 0);
 
-            var enemy = EnemySpawner.GetClosestEnemy(mousePosition, 444f);
+            var enemy = _enemySpawner.GetClosestEnemy(mousePosition, 444f);
             enemy.GetComponent<TestDoctor>().healthBehavior.TakeDamage(1);
         }
     }

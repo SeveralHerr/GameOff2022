@@ -6,57 +6,53 @@ using Zenject;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private TestDoctor.Factory _factory;
-    private ITimer _timer;
-
-    public static List<TestDoctor> Enemies = new List<TestDoctor>();
-
-    
-
-
+    private TestDoctorWave _enemyWave;
+    private Dictionary<int, IWave> _waves = new Dictionary<int, IWave>();
+    private int _currentWave = 0;
 
     [Inject]
-    private void Construct(TestDoctor.Factory factory, ITimer timer)
+    private void Construct(TestDoctorWave enemyWave)
     {
-        _factory = factory;
-        _timer = timer;
+        _enemyWave = enemyWave;
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
-
+        _waves.Add(0, _enemyWave);
     }
 
     // Update is called once per frame
     void Update()
     {
-        _timer.RunTimer(3f, () => {
-            var enemy = _factory.Create();
-            enemy.MoveSpeed = 25f;
-            Enemies.Add(enemy);
+        // no more waves
+        if (_currentWave == _waves.Count)
+        {
+            return;
+        }
 
-            var enemy2 = _factory.Create();
-            enemy2.MoveSpeed = 40f;
-            Enemies.Add(enemy2);
-            }
-        );
-
-
+        if (!_waves[_currentWave].IsWaveCompleted())
+        {
+            _waves[_currentWave].RunWave();
+        }
+        else
+        {
+            _currentWave++;
+        }
     }
 
-    public static GameObject GetClosestEnemy(Vector3 position, float maxRange)
+    public GameObject GetClosestEnemy(Vector3 position, float maxRange)
     {
-        if (Enemies.Count == 0)
+        if (_enemyWave.Wave.Enemies.Count == 0)
         {
             return null;
         }
 
-        TestDoctor closest = null;
-        foreach(var enemy in Enemies)
+        IEnemy closest = null;
+        foreach(var enemy in _enemyWave.Wave.Enemies)
         {
             //Debug.Log(Vector3.Distance(position, enemy.transform.position));
-            if (Vector3.Distance(position, enemy.transform.position) < maxRange)
+            if (Vector3.Distance(position, enemy.Position) < maxRange)
             {
                 if(closest == null)
                 {
@@ -64,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
                 }
                 else
                 {
-                    if (Vector3.Distance(position, enemy.transform.position) < Vector3.Distance(position, closest.transform.position))
+                    if (Vector3.Distance(position, enemy.Position) < Vector3.Distance(position, closest.Position))
                     {
                         closest = enemy;
                     }
@@ -72,6 +68,11 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        return closest?.gameObject;
+        return closest?.GetGameObject();
+    }
+
+    public void RemoveEnemy(TestDoctor enemy)
+    {
+        _enemyWave.Wave.Enemies.Remove(enemy);
     }
 }

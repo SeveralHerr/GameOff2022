@@ -10,7 +10,13 @@ public class Shooter<T> : MonoBehaviour, IPlaceable
     public GameObject Barrel;
     public GameObject TargetEnemy;
 
+    private EnemySpawner _enemySpawner;
 
+    [Inject]
+    private void Construct(EnemySpawner enemySpawner)
+    {
+        _enemySpawner = enemySpawner;
+    }
 
     public void PointToEnemy()
     {
@@ -36,7 +42,7 @@ public class Shooter<T> : MonoBehaviour, IPlaceable
     }
     private GameObject GetClosestEnemy()
     {
-        return EnemySpawner.GetClosestEnemy(transform.position, 4000f);
+        return _enemySpawner.GetClosestEnemy(transform.position, 4000f);
     }
 }
 

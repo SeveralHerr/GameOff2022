@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class TestDoctor : MonoBehaviour
+public class TestDoctor : MonoBehaviour, IEnemy
 {
     private Vector2 _targetPosition;
     private Rigidbody2D rb;
@@ -15,14 +15,29 @@ public class TestDoctor : MonoBehaviour
     private Vector3 offset = new Vector3(0, 15, 0);
 
     public HealthBehavior healthBehavior;
-    public float MoveSpeed = 25f;
-    
-    public class Factory : PlaceholderFactory<string, TestDoctor>
+    public float MoveSpeed { get; set; } = 25f;
+    public Vector3 Position
+    {
+        get { return transform.position; }
+        set { transform.position = value; } 
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
+    public class Factory : PlaceholderFactory<string, TestDoctor>, IFactory<TestDoctor>
     {
         public TestDoctor Create()
         {
             return base.Create($"Prefabs/{nameof(TestDoctor)}");
         }
+    }
+    
+    public IFactory<TestDoctor> Create()
+    {
+        return new TestDoctor.Factory();
     }
 
 

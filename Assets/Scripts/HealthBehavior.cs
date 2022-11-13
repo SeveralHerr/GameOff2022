@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class HealthBehavior : MonoBehaviour
 {
@@ -9,6 +10,15 @@ public class HealthBehavior : MonoBehaviour
 
     public HealthBar HealthBar;
 
+    private EnemySpawner _enemySpawner;
+
+    [Inject]
+    private void Construct(EnemySpawner enemySpawner)
+    {
+        _enemySpawner = enemySpawner;
+    }
+
+    
     public void Start()
     {
         HealthBar.SetMaxHealth(MaxHealth);
@@ -21,7 +31,7 @@ public class HealthBehavior : MonoBehaviour
 
         if (Health <= 0)
         {
-            EnemySpawner.Enemies.Remove(gameObject.GetComponent<TestDoctor>());
+            _enemySpawner.RemoveEnemy(gameObject.GetComponent<TestDoctor>());
             Destroy(gameObject);
         }
     }
