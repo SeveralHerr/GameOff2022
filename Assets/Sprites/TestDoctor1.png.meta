@@ -215,8 +215,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd60fa4c12b027146a22162b74c9542a
+      spriteID: f97534f1d085f53449c40db96bdc8c55
       internalID: -2116452793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TestDoctor1_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65a27e3ab51d29248986ab837b6f6738
+      internalID: -163420750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TestDoctor1_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 495996daccdf9f646bd3ea3a1858d8f8
+      internalID: 1987678215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TestDoctor1_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a43b8c573d018446bd1b608c7a0f42e
+      internalID: -867719372
       vertices: []
       indices: 
       edges: []
@@ -234,9 +297,12 @@ TextureImporter:
     nameFileIdTable:
       TestDoctor1_2: -1553398026
       TestDoctor1_3: -1315810449
+      TestDoctor1_7: -867719372
+      TestDoctor1_5: -163420750
       TestDoctor1_0: -429934176
       TestDoctor1_4: -2116452793
       TestDoctor1_1: 125245514
+      TestDoctor1_6: 1987678215
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

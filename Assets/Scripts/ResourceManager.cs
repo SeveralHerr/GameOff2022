@@ -8,6 +8,9 @@ public class ResourceManager : MonoBehaviour
 {
     public TextMeshProUGUI AppleResource;
     public  int Apples { get; set; } = 0;
+
+    public TextMeshProUGUI HealthResource;
+    public int Health { get; set; } = 10;
     public  int AppleMultiplier { get; set; } = 1;
 
     private ITimer _timer;
@@ -29,5 +32,12 @@ public class ResourceManager : MonoBehaviour
     {
         _timer.RunTimer(5f, () => Apples += AppleMultiplier);
         AppleResource.text = $"Apples: {Apples}";
+
+        HealthResource.text = $"Health: {Health}";
+
+        if (Health <= 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+        }
     }
 }

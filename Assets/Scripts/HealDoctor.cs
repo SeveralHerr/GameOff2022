@@ -1,47 +1,50 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Resources;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
+using Zenject.SpaceFighter;
 
-public class TestDoctor : MonoBehaviour, IEnemy
+public class HealDoctor : MonoBehaviour, IEnemy
+    
+
 {
+    private ResourceManager _resourceManager;
+    private EnemySpawner _enemySpawner;
     private Vector2 _targetPosition;
-    private Rigidbody2D rb;
 
     private int path = 0;
     private Vector3 offset = new Vector3(0, 15, 0);
-    private ResourceManager _resourceManager;
-    private EnemySpawner _enemySpawner;
 
-    public HealthBehavior healthBehavior;
-
-    public BoxCollider2D boxCollider2D;
     public float MoveSpeed { get; set; } = 25f;
     public Vector3 Position
     {
         get { return transform.position; }
-        set { transform.position = value; } 
+        set { transform.position = value; }
+    }
+    private Rigidbody2D rb;
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+
+
+        transform.position = Grid.Instance.GetEnemyPathWorldPosition(0, new Vector3(100, 0, 0) + offset);
+        _targetPosition = Grid.Instance.GetEnemyPathWorldPosition(0, offset);
     }
 
-    public GameObject GetGameObject()
+    public class Factory : PlaceholderFactory<string, HealDoctor>, IFactory<HealDoctor>
     {
-        return gameObject;
-    }
-
-    public class Factory : PlaceholderFactory<string, TestDoctor>, IFactory<TestDoctor>
-    {
-        public TestDoctor Create()
+        public HealDoctor Create()
         {
-            return base.Create($"Prefabs/{nameof(TestDoctor)}");
+            return base.Create($"Prefabs/{nameof(HealDoctor)}");
         }
     }
-    
-    public IFactory<TestDoctor> Create()
+
+    public IFactory<HealDoctor> Create()
     {
-        return new TestDoctor.Factory();
+        return new HealDoctor.Factory();
     }
     [Inject]
     public void Construct(ResourceManager resourceManager, EnemySpawner enemySpawner)
@@ -49,29 +52,18 @@ public class TestDoctor : MonoBehaviour, IEnemy
         _resourceManager = resourceManager;
         _enemySpawner = enemySpawner;
     }
-    
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        
-
-        transform.position = Grid.Instance.GetEnemyPathWorldPosition(0, new Vector3(100, 0, 0) + offset);
-        _targetPosition = Grid.Instance.GetEnemyPathWorldPosition(0, offset);
-    }
-    
     // Update is called once per frame
     void Update()
     {
         var targetPosition = Grid.Instance.GetEnemyPathWorldPosition(path, offset);
-        var isEndOfPath = path == Grid.Instance.EnemyPath.Length-1;
+        var isEndOfPath = path == Grid.Instance.EnemyPath.Length - 1;
         if (Vector3.Distance(transform.position, targetPosition) < 35f && !isEndOfPath)
         {
             _targetPosition = targetPosition;
             path++;
         }
-        else if(isEndOfPath)
+        else if (isEndOfPath)
         {
             var lastPath = Grid.Instance.EnemyPath.Length - 1;
             _targetPosition = Grid.Instance.GetEnemyPathWorldPosition(lastPath, new Vector3(-100, 0, 0) + offset);
@@ -80,7 +72,7 @@ public class TestDoctor : MonoBehaviour, IEnemy
         var moveDirection = (_targetPosition - (Vector2)transform.position).normalized;
 
 
-        transform.position += (Vector3) moveDirection * MoveSpeed * Time.deltaTime;
+        transform.position += (Vector3)moveDirection * MoveSpeed * Time.deltaTime;
     }
 
 
@@ -93,4 +85,9 @@ public class TestDoctor : MonoBehaviour, IEnemy
             Destroy(gameObject);
         }
     }
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
 }

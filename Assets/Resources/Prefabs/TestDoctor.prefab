@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBehavior: {fileID: 8335025806876266355}
+  boxCollider2D: {fileID: 261173149117561787}
 --- !u!114 &8335025806876266355
 MonoBehaviour:
   m_ObjectHideFlags: 0
