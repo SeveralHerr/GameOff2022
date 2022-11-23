@@ -86,36 +86,38 @@ public class AppleCannonUI : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
+            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
             if (SelectedPrefab == null)
             {
+                var grid_type = Grid.Instance.GetValue(mousePosition)?.GetType();
+                if (grid_type == typeof(AppleShooter) || grid_type == typeof(GreenAppleShooter) || grid_type == typeof(TreeResource))
+                {
+                    Debug.Log("test");
+                }
                 return;
             }
             
-            
-            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
             if (Grid.Instance.GetValue(mousePosition) == null)
             {
-                var shooter = SelectedFactory.Create();
-                shooter.GetGameObject().transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
+                if (_resourceManager.Apples - SelectedCost >= 0)
+                {
+                    _resourceManager.Apples -= SelectedCost;
+
+                    var shooter = SelectedFactory.Create();
+                    shooter.GetGameObject().transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
 
                     Grid.Instance.SetValue(mousePosition, shooter);
                 }
-                else if (SelectedPrefab == GreenApplePrefab)
-                {
-                    var shooter = _greenFactory.Create();
-                    shooter.transform.position = Grid.Instance.ValidateWorldGridPosition(mousePosition);
-
-                Grid.Instance.SetValue(mousePosition, shooter);
             }
+                
         }
 
         if(Input.GetMouseButtonDown(1))
-        {
-            SelectedMouseOverPrefab.SetActive(false);
-            SelectedPrefab = null;
-            SelectedMouseOverPrefab = null;
-            SelectedCost = 0;
-            SelectedFactory = null;
+        {   
+
+            ClearSelection();
         }
     }
 
@@ -127,9 +129,22 @@ public class AppleCannonUI : MonoBehaviour
         TreeButton.onClick.AddListener(() => TreeOnClick());
     }
 
+    private void ClearSelection()
+    {
+        if (SelectedMouseOverPrefab != null)
+        {
+            SelectedMouseOverPrefab.SetActive(false);
+        }
+        SelectedPrefab = null;
+        SelectedMouseOverPrefab = null;
+        SelectedCost = 0;
+        SelectedFactory = null;
+        
+    }
 
     private void OnClick()
     {
+        ClearSelection();
         SelectedPrefab = ApplePrefab;
         SelectedMouseOverPrefab = MouseOverPrefab;
         SelectedFactory = _factory;
@@ -138,6 +153,7 @@ public class AppleCannonUI : MonoBehaviour
 
     private void GreenOnClick()
     {
+        ClearSelection();
         SelectedPrefab = GreenApplePrefab;
         SelectedMouseOverPrefab = GreenMouseOverPrefab;
         SelectedFactory = _greenFactory;
@@ -146,6 +162,7 @@ public class AppleCannonUI : MonoBehaviour
 
     private void TreeOnClick()
     {
+        ClearSelection();
         SelectedPrefab = TreePrefab;
         SelectedMouseOverPrefab = TreeMouseOverPrefab;
         SelectedFactory = _treeFactory;
