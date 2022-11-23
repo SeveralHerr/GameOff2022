@@ -36,15 +36,6 @@ public class TestGrid : MonoBehaviour
         //    }
         //}
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var gridPos = Grid.Instance.GetXY(mousePosition);
-            //Debug.Log($"{gridPos.x},{gridPos.y}");
-            //grid.SetValue(mousePosition, 0);
-
-            var enemy = _enemySpawner.GetClosestEnemy(mousePosition, 444f);
-            enemy.GetComponent<TestDoctor>().healthBehavior.TakeDamage(1);
-        }
+        
     }
 }
