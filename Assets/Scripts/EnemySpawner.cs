@@ -12,11 +12,6 @@ public class EnemySpawner : MonoBehaviour
     private int _currentWave = 0;
 
 
-    public IFactory<TestDoctor> Create()
-    {
-        return new TestDoctor.Factory();
-    }
-
     [Inject]
     private void Construct(TestDoctorWave enemyWave, FasterBiggerTestDoctorWave fasterBiggerTestDoctorWave)
     {

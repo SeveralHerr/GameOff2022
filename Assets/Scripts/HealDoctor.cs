@@ -7,8 +7,6 @@ using Zenject;
 using Zenject.SpaceFighter;
 
 public class HealDoctor : MonoBehaviour, IEnemy
-    
-
 {
     private ResourceManager _resourceManager;
     private EnemySpawner _enemySpawner;
@@ -90,4 +88,8 @@ public class HealDoctor : MonoBehaviour, IEnemy
         return gameObject;
     }
 
+    IFactory<TestDoctor> IEnemy.Create()
+    {
+        throw new System.NotImplementedException();
+    }
 }
