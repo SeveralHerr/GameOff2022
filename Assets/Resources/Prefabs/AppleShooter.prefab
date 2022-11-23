@@ -225,6 +225,8 @@ GameObject:
   - component: {fileID: 3954131691277111149}
   - component: {fileID: 3954131691277111148}
   - component: {fileID: 3954131691277111139}
+  - component: {fileID: 6106465833727075211}
+  - component: {fileID: 3899739622323469766}
   m_Layer: 0
   m_Name: AppleShooter
   m_TagString: Untagged
@@ -262,7 +264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a850b7dcc46b88043a107eff4e0eeae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apple: {fileID: 9035328138652974817, guid: db58d345edc70624289c7c7ac58b6488, type: 3}
+  UpgradeButton: {fileID: 5598219345886581990}
+  DestroyButton: {fileID: 1133481103849602693}
+  MainButton: {fileID: 3899739622323469766}
 --- !u!114 &3954131691277111139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +282,61 @@ MonoBehaviour:
   ProjectileSpawnPosition: {fileID: 3954131690686395463}
   Barrel: {fileID: 3954131690252536398}
   TargetEnemy: {fileID: 0}
+--- !u!210 &6106465833727075211
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3954131691277111150}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+--- !u!114 &3899739622323469766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3954131691277111150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &3100230241965584605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -333,6 +392,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4089741711173491030, guid: d05540541ca8a8448b2db2f303f75608, type: 3}
+      propertyPath: m_Name
+      value: DestroyButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935756114828961083, guid: d05540541ca8a8448b2db2f303f75608, type: 3}
+      propertyPath: m_Name
+      value: UpgradeButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d05540541ca8a8448b2db2f303f75608, type: 3}
 --- !u!4 &755412697909081909 stripped
@@ -340,3 +407,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2413358900233930728, guid: d05540541ca8a8448b2db2f303f75608, type: 3}
   m_PrefabInstance: {fileID: 3100230241965584605}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1133481103849602693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2647225926225137240, guid: d05540541ca8a8448b2db2f303f75608, type: 3}
+  m_PrefabInstance: {fileID: 3100230241965584605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5598219345886581990 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7401353928815813691, guid: d05540541ca8a8448b2db2f303f75608, type: 3}
+  m_PrefabInstance: {fileID: 3100230241965584605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

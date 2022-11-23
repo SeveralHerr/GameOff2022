@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - AppleResource
+  - UpgradeSign
+  - DestroySign
+  - AppleShooter
+  - GreenAppleShooter
+  - TreeResource
   layers:
   - Default
   - TransparentFX

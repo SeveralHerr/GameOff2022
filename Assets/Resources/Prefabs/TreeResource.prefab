@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7629335971064773816}
   - component: {fileID: 2509830120661891094}
+  - component: {fileID: 8440617231024482248}
   m_Layer: 0
   m_Name: TreeResource
   m_TagString: Untagged
@@ -46,6 +47,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 324c8ce801a9e4547be5dded007f423e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &8440617231024482248
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701298168977650310}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
 --- !u!1 &7595567455389079730
 GameObject:
   m_ObjectHideFlags: 0

@@ -109,12 +109,12 @@ GameObject:
   - component: {fileID: 3488086451983884916}
   - component: {fileID: 2647225926225137240}
   m_Layer: 0
-  m_Name: Apple
-  m_TagString: Untagged
+  m_Name: DestroyButton
+  m_TagString: DestroySign
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2765042284391106305
 Transform:
   m_ObjectHideFlags: 0
@@ -238,12 +238,12 @@ GameObject:
   - component: {fileID: 2117517361073706395}
   - component: {fileID: 7401353928815813691}
   m_Layer: 0
-  m_Name: Apple
-  m_TagString: Untagged
+  m_Name: UpgradeButton
+  m_TagString: UpgradeSign
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7846842769572203655
 Transform:
   m_ObjectHideFlags: 0

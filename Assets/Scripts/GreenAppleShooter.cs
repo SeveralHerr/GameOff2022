@@ -49,6 +49,7 @@ public class Shooter<T> : MonoBehaviour, IPlaceable
     {
         return gameObject;
     }
+
 }
 
 public class GreenAppleShooter : Shooter<GreenAppleShooter>, IPlaceable

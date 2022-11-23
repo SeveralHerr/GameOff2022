@@ -7,6 +7,9 @@ public class GameInstaller : MonoInstaller
 {
     public EnemySpawner enemySpawner;
     public ResourceManager resourceManager;
+    public GridManager gridManager;
+    public InputManager inputManager;
+
     public override void InstallBindings()
     {
         Container.BindFactory<string, AppleProjectile, AppleProjectile.Factory>().FromFactory<PrefabResourceFactory<AppleProjectile>>();
@@ -21,11 +24,14 @@ public class GameInstaller : MonoInstaller
         Container.BindFactory<string, GreenAppleProjectile, GreenAppleProjectile.Factory>().FromFactory<PrefabResourceFactory<GreenAppleProjectile>>();
         Container.Bind<TestDoctorWave>().ToSelf().AsTransient();
         Container.Bind<FasterBiggerTestDoctorWave>().ToSelf().AsTransient();
+        //Container.Bind<InputManager>().ToSelf().AsSingle();
         //Instantiate(Resources.Load("Prefabs/EnemySpawner"), Vector3.zero, Quaternion.identity);
 
         Container.BindInstance<EnemySpawner>(enemySpawner).AsSingle();
         Container.BindInstance<ResourceManager>(resourceManager).AsSingle();
+        Container.BindInstance<GridManager>(gridManager).AsSingle();
 
+        Container.BindInstance<InputManager>(inputManager).AsSingle();
 
 
 
