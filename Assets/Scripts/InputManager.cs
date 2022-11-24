@@ -4,11 +4,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using static UnityEngine.GraphicsBuffer;
 
 public class InputManager : MonoBehaviour
 {
     public SelectableObject SelectedObject;
     private IFactory<IPlaceable> SelectedFactory;
+
+    [SerializeField]
+    private SelectableObject OpenUpgradeWindow;
 
     public List<SelectableObject> SelectableObjects;
 
@@ -17,6 +21,8 @@ public class InputManager : MonoBehaviour
     private AppleShooter.Factory _factory;
     private GreenAppleShooter.Factory _greenFactory;
     private TreeResource.Factory _treeFactory;
+
+    public Button TestButton;
 
 
     [Inject]
@@ -28,21 +34,12 @@ public class InputManager : MonoBehaviour
         _treeFactory = treeFactory;
     }
 
-    //private void Start()
-    //{
-    //    foreach(var obj in SelectableObjects)
-    //    {
-    //        foreach(var button in obj.Buttons)
-    //        {
-    //            button.onClick.AddListener(() => OnClick(obj));
-    //        }
-    //    }
-    //}
-
     public void OnLeftClick()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            ClearWindows();
+            
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //Debug.Log($"Tile: {_gridManager.GetSelectableObject(mousePosition)?.Type}"); 
 
@@ -66,38 +63,51 @@ public class InputManager : MonoBehaviour
             else if (_gridManager.IsOccupied(mousePosition) && SelectedObject == null && _gridManager.GetSelectableObject(mousePosition)?.Type == SelectableType.Placeable)
             {
                 Debug.Log($"Tile: {_gridManager.GetSelectableObject(mousePosition)?.Type}");
+                
 
-                var tile = _gridManager.GetSelectableObject(mousePosition);
-                var test = tile.GetComponentInChildren<Turret>();
 
-                test.UpgradeButton.gameObject.SetActive(true);
-                test.DestroyButton.gameObject.SetActive(true);
-                //test.MainButton.gameObject.SetActive(false);
+                var tileSelectableObject = _gridManager.GetSelectableObject(mousePosition);
+                var turret = tileSelectableObject.Prefab.GetComponentInChildren<Turret>();
 
-               // foreach (var button in tile.Buttons)
-                //{
-                //    if (button.gameObject.tag == "AppleCannonUI")
-                //    {
-                //        button.gameObject.SetActive(true);
-                //    }
-                //    else if (button.gameObject.tag == Tags.DestroySign.ToString())
-                //    {
-                //        button.gameObject.SetActive(true);
-                //    }
-                //    else
-                //    {
-                //        button.gameObject.SetActive(false);
-                //    }
-                //}
+                OpenUpgradeWindow = tileSelectableObject;
+
+                turret.UpgradeButton.gameObject.SetActive(true);
+                turret.DestroyButton.gameObject.SetActive(true);
+
+               // TestButton = turrent.UpgradeButton;
+                //TestButton.onClick.AddListener(() => Debug.Log("test"));
+
+                var test = turret.DestroyButton.onClick.GetPersistentEventCount();
+
+                Debug.Log(test);
+
+
             }
         }
 
         if (Input.GetMouseButtonDown(1))
         {
+            ClearWindows();
             ClearSelected();
         }
     }
 
+
+    private void ClearWindows()
+    {
+        if (OpenUpgradeWindow == null)
+        {
+            return;
+        }
+
+        var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //if (_gridManager.)
+        
+        var turret = OpenUpgradeWindow.Prefab.GetComponentInChildren<Turret>();
+        turret.UpgradeButton.gameObject.SetActive(false);
+        turret.DestroyButton.gameObject.SetActive(false);
+    }
+    
     private SelectableObject SetupSelectedPlaceableObject(IPlaceable placeable)
     {
         var newSelectableObject = (SelectableObject)ScriptableObject.CreateInstance(nameof(SelectableObject));
@@ -106,13 +116,11 @@ public class InputManager : MonoBehaviour
         newSelectableObject.Buttons = new List<Button>();
   
 
-        var buttons = newSelectableObject.Prefab.gameObject.GetComponentsInChildren<Button>();
-        foreach (var button in buttons)
-        {
-            newSelectableObject.Buttons.Add(button);
-        }
+        var buttons = newSelectableObject.Prefab.gameObject.GetComponentInChildren<Turret>();
 
-        newSelectableObject.Buttons.Add(newSelectableObject.Prefab.gameObject.GetComponent<Button>());
+        newSelectableObject.Buttons.Add(buttons.DestroyButton);
+        newSelectableObject.Buttons.Add(buttons.UpgradeButton);
+        newSelectableObject.Buttons.Add(buttons.MainButton);
 
         AddSelectableObject(newSelectableObject);
 
@@ -122,10 +130,10 @@ public class InputManager : MonoBehaviour
 
     private void OnClick(SelectableObject obj)
     {
-        //if (obj.Type == SelectableType.UI)
-        //{
-        //    OnTurrentClick();
-        //}
+        if (obj.Type == SelectableType.Placeable)
+        {
+            OnTurrentClick(obj);
+        }
 
         if (obj.Type == SelectableType.TreeResource)
         {
@@ -145,12 +153,6 @@ public class InputManager : MonoBehaviour
 
     public void OnFactoryClick(IFactory<IPlaceable> factory, SelectableObject obj)
     {
-        //var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //var shooter = factory.Create();
-        //shooter.GetGameObject().transform.position = _gridManager.GetCenterOfTile(mousePosition);
-
-        //_gridManager.SetTile(mousePosition, obj);
-
         SelectedFactory = factory;
         SelectedObject = obj;
 
@@ -183,6 +185,8 @@ public class InputManager : MonoBehaviour
     public void OnTurrentClick(SelectableObject obj)
     {
         // upgrade / destroy 
+
+        Debug.Log($"{obj.Prefab.name} was clicked");
 
     }
 
@@ -246,7 +250,7 @@ public class InputManager : MonoBehaviour
             button.onClick.RemoveAllListeners();
         }
 
-        _gridManager.ClearTile(position);
+        //_gridManager.ClearTile(position);
         //SelectableObjects.Remove(selectableObject);
     }
 }
