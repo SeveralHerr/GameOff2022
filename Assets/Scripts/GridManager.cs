@@ -76,6 +76,12 @@ public class GridManager : MonoBehaviour
     public bool IsOccupied(Vector3 position)
     {
         var cellPosition = Tilemap.WorldToCell(position);
+
+        if (!TileGrid.TileProperties.ContainsKey((cellPosition.x, cellPosition.y)))
+        {
+            return false;
+        }
+
         var tileProperty = TileGrid.TileProperties[(cellPosition.x, cellPosition.y)];
         return tileProperty.Occupied;
     }

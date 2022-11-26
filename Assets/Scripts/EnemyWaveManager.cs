@@ -14,8 +14,14 @@ public class TestDoctorWave : IWave
     private void Construct(TestDoctor.Factory factory, ITimer timer)
     {
         _timer = timer;
-        
-        Wave = new EnemyWave(factory, _timer);
+
+        Wave = new EnemyWave(factory, _timer)
+        {
+            MoveSpeed = 35f,
+            EnemyMaxCount = 10,
+            SpawnRate = 2.5f,
+            Health = 3
+        };
     }
     
     public void RunWave()
@@ -45,7 +51,8 @@ public class FasterBiggerTestDoctorWave : IWave
             MoveSpeed = 50f,
             EnemyMaxCount = 10,
             SpawnRate = 3f,
-            SpawnRateIntensity = 0.5f
+            SpawnRateIntensity = 0.5f,
+            Health = 5
         };
     }
 
@@ -60,14 +67,113 @@ public class FasterBiggerTestDoctorWave : IWave
     }
 }
 
+public class Wave3 : IWave
+{
+    private ITimer _timer;
+
+    public EnemyWave Wave { get; set; }
+
+    [Inject]
+    private void Construct(HealDoctor.Factory factory, ITimer timer)
+    {
+        _timer = timer;
+
+        Wave = new EnemyWave(factory, _timer)
+        {
+            MoveSpeed = 50f,
+            EnemyMaxCount = 25,
+            SpawnRate = 2f,
+            //SpawnRateIntensity = 0.5f,
+            Health = 5
+        };
+    }
+
+    public void RunWave()
+    {
+        Wave.RunWave();
+    }
+
+    public bool IsWaveCompleted()
+    {
+        return Wave.IsWaveCompleted();
+    }
+}
+
+public class Wave1 : IWave
+{
+    private ITimer _timer;
+
+    public EnemyWave Wave { get; set; }
+
+    [Inject]
+    private void Construct(TestDoctor.Factory factory, ITimer timer)
+    {
+        _timer = timer;
+
+        Wave = new EnemyWave(factory, _timer)
+        {
+            MoveSpeed = 25f,
+            EnemyMaxCount = 3,
+            SpawnRate = 4f,
+            //SpawnRateIntensity = 0.5f,
+            Health = 2
+        };
+    }
+
+    public void RunWave()
+    {
+        Wave.RunWave();
+    }
+
+    public bool IsWaveCompleted()
+    {
+        return Wave.IsWaveCompleted();
+    }
+}
+
+public class Wave2 : IWave
+{
+    private ITimer _timer;
+
+    public EnemyWave Wave { get; set; }
+
+    [Inject]
+    private void Construct(HealDoctor.Factory factory, ITimer timer)
+    {
+        _timer = timer;
+
+        Wave = new EnemyWave(factory, _timer)
+        {
+            MoveSpeed = 25f,
+            EnemyMaxCount = 4,
+            SpawnRate = 3f,
+            //SpawnRateIntensity = 0.5f,
+            Health = 3
+        };
+    }
+
+    public void RunWave()
+    {
+        Wave.RunWave();
+    }
+
+    public bool IsWaveCompleted()
+    {
+        return Wave.IsWaveCompleted();
+    }
+}
+
+
 public class EnemyWave
 {
     public List<IEnemy> Enemies = new List<IEnemy>();
     public bool IsComplete = false;
     public int EnemyMaxCount { get; set; } = 5;
     public float SpawnRate { get; set; } = 3f;
-    public float SpawnRateIntensity { get; set; } = 0.5f;
+    public float SpawnRateIntensity { get; set; } = 0f;
     public float MoveSpeed { get; set; } = 25f;
+
+    public float Health { get; set; } = 3f;
 
     private int _enemyCount = 0;
 
@@ -92,6 +198,7 @@ public class EnemyWave
 
             var enemy = _doctorFactory.Create();
             enemy.MoveSpeed = MoveSpeed;
+            enemy.HealthBehavior.SetMaxHealth(Health);
             Enemies.Add(enemy);
 
             _enemyCount++;

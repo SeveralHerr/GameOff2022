@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 625ae8572b0c95e42a79abd703d18c60, type: 3}
+  m_Sprite: {fileID: 1795731093, guid: 8099de1ed8076df4e84b870dc152bf06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,8 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bbd98f4cb7ce54c93aaf57c62f8776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectileSpawnPosition: {fileID: 0}
+  ProjectileSpawnPosition: {fileID: 0}
   Barrel: {fileID: 0}
+  TargetEnemy: {fileID: 0}
 --- !u!114 &-3374496729126476785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121d7818de8a0174c8ac420e83c467f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 350
 --- !u!50 &611127594024021306
 Rigidbody2D:
   serializedVersion: 4

@@ -10,6 +10,8 @@ public class Shooter<T> : MonoBehaviour, IPlaceable
     public GameObject Barrel;
     public GameObject TargetEnemy;
 
+    public float Range { get; set; } = 70f;
+
     private EnemySpawner _enemySpawner;
 
     [Inject]
@@ -42,7 +44,7 @@ public class Shooter<T> : MonoBehaviour, IPlaceable
     }
     private GameObject GetClosestEnemy()
     {
-        return _enemySpawner.GetClosestEnemy(transform.position, 50f);
+        return _enemySpawner.GetClosestEnemy(transform.position, Range);
     }
 
     public GameObject GetGameObject()
@@ -79,7 +81,9 @@ public class GreenAppleShooter : Shooter<GreenAppleShooter>, IPlaceable
             }
             
             var projectile = _factory.Create();
-            projectile.Setup(ProjectileSpawnPosition.transform.position, TargetEnemy.transform.position);
+            projectile.Damage = 5f;
+            projectile.Setup(ProjectileSpawnPosition.transform.position, TargetEnemy.transform.position,
+                3f, 150f);
         });
     }
 }

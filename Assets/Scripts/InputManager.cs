@@ -21,17 +21,20 @@ public class InputManager : MonoBehaviour
     private AppleShooter.Factory _factory;
     private GreenAppleShooter.Factory _greenFactory;
     private TreeResource.Factory _treeFactory;
+    private ResourceManager _resourceManager;
 
     public Button TestButton;
 
 
     [Inject]
-    private void Construct(GridManager gridManager, AppleShooter.Factory factory, GreenAppleShooter.Factory greenAppleFactory, TreeResource.Factory treeFactory)
+    private void Construct(GridManager gridManager, AppleShooter.Factory factory, GreenAppleShooter.Factory greenAppleFactory, 
+        TreeResource.Factory treeFactory, ResourceManager resourceManager)
     {
         _gridManager = gridManager;
         _factory = factory;
         _greenFactory = greenAppleFactory;
         _treeFactory = treeFactory;
+        _resourceManager = resourceManager;
     }
 
     public void OnLeftClick()
@@ -39,19 +42,22 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             ClearWindows();
-            
+
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //Debug.Log($"Tile: {_gridManager.GetSelectableObject(mousePosition)?.Type}"); 
 
-            if(SelectedObject != null)
+            if (SelectedObject != null)
             {
-                if (_gridManager.IsOccupied(mousePosition))
+                if (_gridManager.IsOccupied(mousePosition)
+                    || _resourceManager.Apples < SelectedObject.Cost)
                 {
                     return;
                 }
                 
                 var shooter = SelectedFactory.Create();
                 shooter.GetGameObject().transform.position = _gridManager.GetCenterOfTile(mousePosition);
+
+                _resourceManager.Apples -= SelectedObject.Cost;
 
                 var newObj = SetupSelectedPlaceableObject(shooter);
 
@@ -62,10 +68,6 @@ public class InputManager : MonoBehaviour
 
             else if (_gridManager.IsOccupied(mousePosition) && SelectedObject == null && _gridManager.GetSelectableObject(mousePosition)?.Type == SelectableType.Placeable)
             {
-                Debug.Log($"Tile: {_gridManager.GetSelectableObject(mousePosition)?.Type}");
-                
-
-
                 var tileSelectableObject = _gridManager.GetSelectableObject(mousePosition);
                 var turret = tileSelectableObject.Prefab.GetComponentInChildren<Turret>();
 
@@ -73,21 +75,12 @@ public class InputManager : MonoBehaviour
 
                 turret.UpgradeButton.gameObject.SetActive(true);
                 turret.DestroyButton.gameObject.SetActive(true);
-
-               // TestButton = turrent.UpgradeButton;
-                //TestButton.onClick.AddListener(() => Debug.Log("test"));
-
-                var test = turret.DestroyButton.onClick.GetPersistentEventCount();
-
-                Debug.Log(test);
-
-
             }
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            ClearWindows();
+            //ClearWindows();
             ClearSelected();
         }
     }
@@ -204,13 +197,10 @@ public class InputManager : MonoBehaviour
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (!_gridManager.IsOccupied(mousePosition))
             {
-                if (SelectedObject.Prefab != null )//&& SelectedCost > _resourceManager.Apples)
+                sprite.color = Color.green;
+                if (_resourceManager.Apples < SelectedObject.Cost)
                 {
                     sprite.color = Color.red;
-                }
-                else
-                {
-                    sprite.color = Color.green;
                 }
             }
             else

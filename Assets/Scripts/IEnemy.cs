@@ -8,5 +8,7 @@ public interface IEnemy
 
     public GameObject GetGameObject();
 
-    public IFactory<TestDoctor> Create();
+    //public IFactory<TestDoctor> Create();
+
+    public HealthBehavior HealthBehavior { get; set; }
 }

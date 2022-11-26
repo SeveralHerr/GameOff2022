@@ -8,8 +8,17 @@ public class Projectile<T> : MonoBehaviour
     private Vector3 _spawnPosition;
 
     private BoxCollider2D boxCollider2D;
+    public ITimer Timer;
 
-    public float MoveSpeed = 75f;
+    public float Damage { get; set; } = 1f;
+
+    public float MoveSpeed { get; set; } = 100f;
+
+    [Inject]
+    public void Construct(ITimer timer)
+    {
+        Timer = timer;
+    }
 
     private void Start()
     {
@@ -24,10 +33,12 @@ public class Projectile<T> : MonoBehaviour
         }
     }
 
-    public void Setup(Vector3 spawnPosition, Vector3 targetPosition)
+    public void Setup(Vector3 spawnPosition, Vector3 targetPosition, float damage, float speed)
     {
         _targetPosition = targetPosition;
         _spawnPosition = spawnPosition;
+        Damage = damage;
+        MoveSpeed = speed;
 
         transform.position = _spawnPosition;
     }
@@ -45,7 +56,7 @@ public class Projectile<T> : MonoBehaviour
         var healthBehavior = collision.gameObject.GetComponent<HealthBehavior>();
         if (healthBehavior != null)
         {
-            healthBehavior.TakeDamage(1);
+            healthBehavior.TakeDamage(Damage);
             Destroy(gameObject);
         }
     }

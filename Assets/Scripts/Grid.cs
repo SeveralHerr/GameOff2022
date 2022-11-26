@@ -40,7 +40,7 @@ public class Grid : SingletonMonobehavior<Grid>
     public float _cellSize;
     private TextMesh[,] _debugTextArray;
     public Vector3 _originPosition;
-    public  (int x, int y)[] EnemyPath = new (int x, int y)[11];
+    public  (int x, int y)[] EnemyPath = new (int x, int y)[18];
 
     public List<Position> NotPlaceableTiles;// = new List<(int x, int y)>();
 
@@ -67,18 +67,24 @@ public class Grid : SingletonMonobehavior<Grid>
             }
         }
 
-        EnemyPath[0] = (9, 4);
-        EnemyPath[1] = (8, 4);
-        EnemyPath[2] = (7, 4);
-        EnemyPath[3] = (6, 4);
-        EnemyPath[4] = (5, 4);
-        EnemyPath[5] = (4, 4);
-        EnemyPath[6] = (4, 5);
-        EnemyPath[7] = (3, 5);
-        EnemyPath[8] = (2, 5);
-        EnemyPath[9] = (1, 5);
-        EnemyPath[10] = (0, 5);
-
+        EnemyPath[0] = (16, 4);
+        EnemyPath[1] = (15, 4);
+        EnemyPath[2] = (14, 4);
+        EnemyPath[3] = (13, 4);
+        EnemyPath[4] = (12, 4);
+        EnemyPath[5] = (11, 4);
+        EnemyPath[6] = (10, 4);
+        EnemyPath[7] = (9, 4);
+        EnemyPath[8] = (8, 4);
+        EnemyPath[9] = (8, 5);
+        EnemyPath[10] = (7, 5);
+        EnemyPath[11] = (6, 5);
+        EnemyPath[12] = (5, 5);
+        EnemyPath[13] = (4, 5);
+        EnemyPath[14] = (3, 5);
+        EnemyPath[15] = (2, 5);
+        EnemyPath[16] = (1, 5);
+        EnemyPath[17] = (0, 5);
     }
     public void Create(int width, int height, float cellSize, Vector3 originPosition)
     {

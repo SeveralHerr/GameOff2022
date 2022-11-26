@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class HealthBehavior : MonoBehaviour
+public class HealthBehavior : MonoBehaviour 
 {
     public float Health = 3;
     public float MaxHealth = 3;
@@ -24,6 +24,12 @@ public class HealthBehavior : MonoBehaviour
         HealthBar.SetMaxHealth(MaxHealth);
     }
 
+    public void SetMaxHealth(float value)
+    {
+        Health = value;
+        MaxHealth = value;
+    }
+
     public void TakeDamage(float damage)
     {
         Health -= damage;
@@ -31,7 +37,7 @@ public class HealthBehavior : MonoBehaviour
 
         if (Health <= 0)
         {
-            _enemySpawner.RemoveEnemy(gameObject.GetComponent<TestDoctor>());
+            _enemySpawner.RemoveEnemy(gameObject.GetComponent<IEnemy>());
             Destroy(gameObject);
         }
     }

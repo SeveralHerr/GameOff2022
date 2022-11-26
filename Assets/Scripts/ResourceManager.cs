@@ -7,7 +7,7 @@ using Zenject;
 public class ResourceManager : MonoBehaviour
 {
     public TextMeshProUGUI AppleResource;
-    public  int Apples { get; set; } = 0;
+    public  int Apples { get; set; } = 1;
 
     public TextMeshProUGUI HealthResource;
     public int Health { get; set; } = 10;

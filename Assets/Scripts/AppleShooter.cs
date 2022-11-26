@@ -35,7 +35,8 @@ public class AppleShooter : Shooter<AppleShooter>, IPlaceable
             }
 
             var projectile = _factory.Create();
-            projectile.Setup(ProjectileSpawnPosition.transform.position, TargetEnemy.transform.position);
+            projectile.Setup(ProjectileSpawnPosition.transform.position, TargetEnemy.transform.position,
+                1f, 150f);
         });
     }
 

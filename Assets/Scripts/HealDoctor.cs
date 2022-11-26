@@ -12,6 +12,9 @@ public class HealDoctor : MonoBehaviour, IEnemy
     private EnemySpawner _enemySpawner;
     private Vector2 _targetPosition;
 
+    [field: SerializeField]
+    public HealthBehavior HealthBehavior { get; set; }
+
     private int path = 0;
     private Vector3 offset = new Vector3(0, 15, 0);
 
@@ -79,17 +82,12 @@ public class HealDoctor : MonoBehaviour, IEnemy
         if (collision.gameObject.name == "Square")
         {
             _resourceManager.Health -= 1;
-            _enemySpawner.RemoveEnemy(gameObject.GetComponent<TestDoctor>());
+            _enemySpawner.RemoveEnemy(gameObject.GetComponent<HealDoctor>());
             Destroy(gameObject);
         }
     }
     public GameObject GetGameObject()
     {
         return gameObject;
-    }
-
-    IFactory<TestDoctor> IEnemy.Create()
-    {
-        throw new System.NotImplementedException();
     }
 }

@@ -42,6 +42,7 @@ public class AppleCannonUI : MonoBehaviour
         AppleShooter.Buttons.Add(apl.GetComponentInChildren<Button>());
         AppleShooter.MouseOverPrefab = AppleShooterMouseover;
         AppleShooter.Type = SelectableType.AppleShooter;
+        AppleShooter.Cost = 1;
         _inputManager.AddSelectableObject(AppleShooter);
 
         GreenAppleShooter.Buttons = new List<Button>();
@@ -49,6 +50,7 @@ public class AppleCannonUI : MonoBehaviour
         GreenAppleShooter.Buttons.Add(greenApple.GetComponentInChildren<Button>());
         GreenAppleShooter.MouseOverPrefab = GreenAppleShooterMouseover;
         GreenAppleShooter.Type = SelectableType.GreenAppleShooter;
+        GreenAppleShooter.Cost = 10;
         _inputManager.AddSelectableObject(GreenAppleShooter);
 
         TreeResource.Buttons = new List<Button>();
@@ -56,6 +58,7 @@ public class AppleCannonUI : MonoBehaviour
         TreeResource.Buttons.Add(tree.GetComponentInChildren<Button>());
         TreeResource.MouseOverPrefab = TreeResourceMouseover;
         TreeResource.Type = SelectableType.TreeResource;
+        TreeResource.Cost = 5;
         _inputManager.AddSelectableObject(TreeResource);
     }
     private void Update()

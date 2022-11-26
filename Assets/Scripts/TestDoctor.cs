@@ -16,7 +16,8 @@ public class TestDoctor : MonoBehaviour, IEnemy
     private ResourceManager _resourceManager;
     private EnemySpawner _enemySpawner;
 
-    public HealthBehavior healthBehavior;
+    [field: SerializeField]
+    public HealthBehavior HealthBehavior { get; set; }
 
     public BoxCollider2D boxCollider2D;
     public float MoveSpeed { get; set; } = 25f;
@@ -38,11 +39,7 @@ public class TestDoctor : MonoBehaviour, IEnemy
             return base.Create($"Prefabs/{nameof(TestDoctor)}");
         }
     }
-    
-    public IFactory<TestDoctor> Create()
-    {
-        return new TestDoctor.Factory();
-    }
+
     [Inject]
     public void Construct(ResourceManager resourceManager, EnemySpawner enemySpawner)
     {
