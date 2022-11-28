@@ -28,6 +28,9 @@ public class GameInstaller : MonoInstaller
         Container.Bind<Wave3>().ToSelf().AsTransient();
         Container.Bind<Wave1>().ToSelf().AsTransient();
         Container.Bind<Wave2>().ToSelf().AsTransient();
+        Container.Bind<Wave6>().ToSelf().AsTransient();
+        Container.Bind<Wave7>().ToSelf().AsTransient();
+        Container.Bind<WinWave>().ToSelf().AsTransient();
         //Container.Bind<InputManager>().ToSelf().AsSingle();
         //Instantiate(Resources.Load("Prefabs/EnemySpawner"), Vector3.zero, Quaternion.identity);
 

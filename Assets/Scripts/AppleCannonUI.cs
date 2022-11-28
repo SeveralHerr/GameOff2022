@@ -42,7 +42,7 @@ public class AppleCannonUI : MonoBehaviour
         AppleShooter.Buttons.Add(apl.GetComponentInChildren<Button>());
         AppleShooter.MouseOverPrefab = AppleShooterMouseover;
         AppleShooter.Type = SelectableType.AppleShooter;
-        AppleShooter.Cost = 1;
+        AppleShooter.Cost = 2;
         _inputManager.AddSelectableObject(AppleShooter);
 
         GreenAppleShooter.Buttons = new List<Button>();

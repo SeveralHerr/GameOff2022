@@ -51,7 +51,7 @@ public class FasterBiggerTestDoctorWave : IWave
             MoveSpeed = 50f,
             EnemyMaxCount = 10,
             SpawnRate = 3f,
-            SpawnRateIntensity = 0.5f,
+           // SpawnRateIntensity = 0.5f,
             Health = 5
         };
     }
@@ -116,13 +116,110 @@ public class Wave1 : IWave
             EnemyMaxCount = 3,
             SpawnRate = 4f,
             //SpawnRateIntensity = 0.5f,
-            Health = 2
+            Health = 1
         };
     }
 
     public void RunWave()
     {
         Wave.RunWave();
+    }
+
+    public bool IsWaveCompleted()
+    {
+        return Wave.IsWaveCompleted();
+    }
+}
+
+public class Wave6 : IWave
+{
+    private ITimer _timer;
+
+    public EnemyWave Wave { get; set; }
+
+    [Inject]
+    private void Construct(TestDoctor.Factory factory, ITimer timer)
+    {
+        _timer = timer;
+
+        Wave = new EnemyWave(factory, _timer)
+        {
+            MoveSpeed = 30f,
+            EnemyMaxCount = 30,
+            SpawnRate = 2f,
+            //SpawnRateIntensity = 0.5f,
+            Health = 3
+        };
+    }
+
+    public void RunWave()
+    {
+        Wave.RunWave();
+    }
+
+    public bool IsWaveCompleted()
+    {
+        return Wave.IsWaveCompleted();
+    }
+}
+
+public class Wave7 : IWave
+{
+    private ITimer _timer;
+
+    public EnemyWave Wave { get; set; }
+
+    [Inject]
+    private void Construct(TestDoctor.Factory factory, ITimer timer)
+    {
+        _timer = timer;
+
+        Wave = new EnemyWave(factory, _timer)
+        {
+            MoveSpeed = 30f,
+            EnemyMaxCount = 300,
+            SpawnRate = 2f,
+            //SpawnRateIntensity = 0.5f,
+            Health = 4
+        };
+    }
+
+    public void RunWave()
+    {
+        Wave.RunWave();
+    }
+
+    public bool IsWaveCompleted()
+    {
+        return Wave.IsWaveCompleted();
+    }
+}
+
+public class WinWave : IWave
+{
+    private ITimer _timer;
+
+    public EnemyWave Wave { get; set; }
+
+    [Inject]
+    private void Construct(TestDoctor.Factory factory, ITimer timer)
+    {
+        _timer = timer;
+
+        Wave = new EnemyWave(factory, _timer)
+        {
+            MoveSpeed = 30f,
+            EnemyMaxCount = 300,
+            SpawnRate = 2f,
+            //SpawnRateIntensity = 0.5f,
+            Health = 4
+        };
+    }
+
+    public void RunWave()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("WinScene");
+        //Wave.RunWave();
     }
 
     public bool IsWaveCompleted()
@@ -154,6 +251,7 @@ public class Wave2 : IWave
 
     public void RunWave()
     {
+        
         Wave.RunWave();
     }
 
